@@ -45,10 +45,24 @@
 /* HERO */
 .lib-hero{padding:88px 0 80px;position:relative;overflow:hidden;border-top:none}
 .lib-hero__glow{position:absolute;top:-140px;right:-40px;width:680px;height:680px;background:radial-gradient(circle,rgba(192,57,43,.08) 0%,rgba(192,57,43,.02) 40%,transparent 65%);pointer-events:none}
-/* KEY FIX: stretch grid so viz matches text column height */
-.lib-hero__grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch}
+/* Grid: max-height drzi hero above the fold, stretch = oba stlpce rovnaka vyska */
+.lib-hero__grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:stretch;
+  max-height:calc(100vh - 168px)
+}
 .lib-hero__grid > div:first-child{order:1;display:flex;flex-direction:column;justify-content:center}
-.lib-hero__viz{order:2;position:relative;align-self:stretch;display:flex;flex-direction:column}
+/* viz column: overflow:hidden oreze obraz presne na vysku gridu */
+.lib-hero__viz{
+  order:2;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  border-radius:var(--r)
+}
 .lib-hero__eye{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:20px}
 .lib-hero__h1{font-size:clamp(48px,6.5vw,82px);font-weight:800;letter-spacing:-.04em;line-height:1.0;margin-bottom:0}
 .lib-hero__acc{display:block;background:var(--ag);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px}
@@ -56,17 +70,30 @@
 .lib-hero__btns{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
 .lib-hero__meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--w50)}
 .lib-hero__dot{width:4px;height:4px;border-radius:50%;background:var(--b3)}
-/* Image fills full height of viz column — no fixed aspect-ratio */
-.lib-hero__img{width:100%;height:100%;min-height:420px;object-fit:cover;object-position:center top;border-radius:var(--r);display:block;flex:1}
-.lib-hero__viz--tall .lib-hero__img{aspect-ratio:unset;height:100%;min-height:420px;object-fit:cover;object-position:center top}
+/* Obraz vypna celu vysku viz stlpca — min-height:0 je kriticke pre flex child */
+.lib-hero__img{
+  width:100%;
+  height:100%;
+  min-height:0;
+  flex:1;
+  object-fit:cover;
+  object-position:center top;
+  display:block
+}
+.lib-hero__viz--tall .lib-hero__img{
+  object-fit:contain;
+  object-position:center center;
+  background:#080808
+}
 .lib-hero__badge{position:absolute;bottom:16px;left:16px;right:16px;background:rgba(7,7,10,.90);backdrop-filter:blur(16px);border:1px solid var(--b2);border-radius:8px;padding:14px 16px;display:flex;align-items:center;gap:10px}
 .lib-hero__badge-dot{width:8px;height:8px;border-radius:50%;background:var(--red);flex-shrink:0;box-shadow:0 0 8px rgba(192,57,43,.6)}
 .lib-hero__badge-txt{font-size:11px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--w80)}
+/* MOBILE: zrusit max-height, obraz aspect-ratio */
 @media(max-width:900px){
   .lib-hero{padding:60px 0 56px}
-  .lib-hero__grid{grid-template-columns:1fr!important;gap:0;align-items:start}
+  .lib-hero__grid{grid-template-columns:1fr!important;gap:0;align-items:start;max-height:none}
   .lib-hero__grid > div:first-child{order:1}
-  .lib-hero__viz{order:2!important;display:block!important;margin-top:32px;align-self:auto}
+  .lib-hero__viz{order:2!important;display:flex!important;margin-top:32px;overflow:visible;border-radius:12px}
   .lib-hero__img,.lib-hero__viz--tall .lib-hero__img{height:auto!important;min-height:0!important;aspect-ratio:16/9;width:100%;object-fit:cover;object-position:center 20%;border-radius:12px}
 }
 @media(max-width:480px){
