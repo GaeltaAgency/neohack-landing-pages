@@ -43,35 +43,33 @@
 .lib-btn--full{width:100%;justify-content:center}
 
 /* HERO */
-.lib-hero{padding:40px 0 60px;position:relative;overflow:hidden;border-top:none}
+.lib-hero{padding:24px 0 40px;position:relative;overflow:hidden;border-top:none}
 .lib-hero__glow{position:absolute;top:-140px;right:-40px;width:680px;height:680px;background:radial-gradient(circle,rgba(192,57,43,.08) 0%,rgba(192,57,43,.02) 40%,transparent 65%);pointer-events:none}
-/* Grid: max-height + overflow:hidden = hard clip above the fold */
 .lib-hero__grid{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:48px;
   align-items:stretch;
-  max-height:calc(100vh - 120px);
+  height:520px;
   overflow:hidden
 }
 .lib-hero__grid > div:first-child{order:1;display:flex;flex-direction:column;justify-content:center}
-/* viz column: overflow:hidden oreze obraz presne na vysku gridu */
 .lib-hero__viz{
   order:2;
   position:relative;
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  border-radius:var(--r)
+  border-radius:var(--r);
+  max-height:520px
 }
 .lib-hero__eye{font-size:11px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:20px}
-.lib-hero__h1{font-size:clamp(48px,6.5vw,82px);font-weight:800;letter-spacing:-.04em;line-height:1.0;margin-bottom:0}
-.lib-hero__acc{display:block;background:var(--ag);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:28px}
-.lib-hero__p{font-size:17px!important;color:rgba(255,255,255,.75)!important;max-width:420px;line-height:1.75;margin-bottom:32px}
-.lib-hero__btns{display:flex;align-items:center;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.lib-hero__h1{font-size:clamp(42px,5.5vw,72px);font-weight:800;letter-spacing:-.04em;line-height:1.0;margin-bottom:0}
+.lib-hero__acc{display:block;background:var(--ag);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:24px}
+.lib-hero__p{font-size:16px!important;color:rgba(255,255,255,.75)!important;max-width:420px;line-height:1.75;margin-bottom:28px}
+.lib-hero__btns{display:flex;align-items:center;gap:12px;margin-bottom:20px;flex-wrap:wrap}
 .lib-hero__meta{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--w50)}
 .lib-hero__dot{width:4px;height:4px;border-radius:50%;background:var(--b3)}
-/* Obraz vypna celu vysku viz stlpca — min-height:0 je kriticke pre flex child */
 .lib-hero__img{
   width:100%;
   height:100%;
@@ -91,16 +89,16 @@
 .lib-hero__badge-txt{font-size:11px;font-weight:600;letter-spacing:.10em;text-transform:uppercase;color:var(--w80)}
 /* MOBILE */
 @media(max-width:900px){
-  .lib-hero{padding:60px 0 56px}
-  .lib-hero__grid{grid-template-columns:1fr!important;gap:0;align-items:start;max-height:none;overflow:visible}
+  .lib-hero{padding:48px 0 40px}
+  .lib-hero__grid{grid-template-columns:1fr!important;height:auto;overflow:visible}
   .lib-hero__grid > div:first-child{order:1}
-  .lib-hero__viz{order:2!important;display:flex!important;margin-top:32px;overflow:visible;border-radius:12px}
+  .lib-hero__viz{order:2!important;display:flex!important;margin-top:28px;overflow:visible;border-radius:12px;max-height:none}
   .lib-hero__img,.lib-hero__viz--tall .lib-hero__img{height:auto!important;min-height:0!important;aspect-ratio:16/9;width:100%;object-fit:cover;object-position:center 20%;border-radius:12px}
 }
 @media(max-width:480px){
-  .lib-hero{padding:48px 0 0}
-  .lib-hero__h1{font-size:36px!important;line-height:1.08!important}
-  .lib-hero__acc{font-size:36px!important}
+  .lib-hero{padding:40px 0 0}
+  .lib-hero__h1{font-size:34px!important;line-height:1.08!important}
+  .lib-hero__acc{font-size:34px!important}
   .lib-hero__p{font-size:15px!important;margin-bottom:20px}
   .lib-hero__btns{flex-direction:column;gap:10px;margin-bottom:20px}
   .lib-hero__btns .lib-btn{width:100%;text-align:center;justify-content:center}
